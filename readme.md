@@ -1,36 +1,46 @@
-# The Name Of My App
+# Trivia Quiz Game
 
-a description of my project 
-
-### Technologies Used
-
-- tech 
-- tech 2
-- tech 3
-- tech 4
-
-### Wireframes
-
-![Some text](https://psychomem.pl/wp-content/uploads/2019/03/mem-szablon-1.jpg)
-
-# The Name of My App
-
-a description of my project
+An online trivia game that grabs the questions from api, gives you multiple choice and feedback 
 
 ### Technologies Used
 
-- tech
-- tech 2
-- tech 3
-- tech 4
+- HTML
+- CSS
+- JavaScript
+- JQuery
+- APIs
+`Open Trivia DB`
+
+### DESKTOP
+
+![Desktop Version](https://i.imgur.com/TKPvrtw.png)
+
+### MOBILE
+
+![Mobile Version](https://i.imgur.com/sF4Bvup.png)
+
+
+
+
+
+### Technologies Used
+
+- HTML
+- CSS
+- Javascript
+- JQuery
 
 ### Daily Plan
 
 | Day | Goal |
 |-----|------|
-| 1 | Choose API |
+| 1 | Test API and Setup HTML skeleton |
 | 2 | Render data to screen |
-| 3 | Create form |
+| 3 | Add DOM components |
+| 4 | Styling and adding features |
+| 5 | Adding additional features |
+| 6 | Adding features and checking if it is working on both version |
+| 7 | Finishing touches |
 
 ### Link to Project
-[My Project Live Page](https://www.google.com)
+[My Project Live Page]
