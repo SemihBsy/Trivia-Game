@@ -11,19 +11,21 @@ const $totalQuestion = $('#total-question');
 
 let correctAnswer = "", correctScore = askedCount = 0, totalQuestion = 10;
 
-const URL = "https://opentdb.com/api.php?amount=1"
+const $URL = "https://opentdb.com/api.php?amount=1"
 
 
 
-function loadQuestion(){
+async function loadQuestion(){
 
-    $.ajax({
-        url : `${URL}`,
+await $.ajax({
+    url : `${URL}`,
     }).then(
         (data) => {
             questionData = data;
             render()
-            console.log(data); 
+           // console.log(data);
+            $result.innerHTML = "";
+            showQuestion(data.results[0])
         })
 } 
 
@@ -40,6 +42,3 @@ function eventListeners(){
     $checkBtn.addEventListener('click', checkAnswer);
     $playAgainBtn.addEventListener('click', restartQuiz);
 }
-
-
-
