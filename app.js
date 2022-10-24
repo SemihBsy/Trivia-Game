@@ -1,45 +1,35 @@
 let questionData;
 
 
-const $question = $('#question');
-const $options = $('.quiz-options');
-const $checkBtn = $('#check-answer');
-const $playAgainBtn = $('#play-again');
-const $result = $('#result');
-const $correctScore = $('#correct-score');
-const $totalQuestion = $('#total-question');
+const $xquestion = $('#question');
+const $xoptions = $('.quiz-options');
+const $xcheckBtn = $('#check-answer');
+const $xplayAgainBtn = $('#play-again');
+const $xresult = $('#result');
+const $xcorrectScore = $('#correct-score');
+const $xtotalQuestion = $('#total-question');
 
 let correctAnswer = "", correctScore = askedCount = 0, totalQuestion = 10;
 
-const URL = "https://opentdb.com/api.php?amount=1"
+//const URL = "https://opentdb.com/api.php?amount=1"
 
 
-
+// load question from API
 function loadQuestion(){
-
-    $.ajax({
-        url : `${URL}`,
-    }).then(
-        (data) => {
-            questionData = data;
-            render()
-            console.log(data); 
-        })
-} 
-
+    const URL = "https://opentdb.com/api.php?amount=1";
+    $.ajax(URL)
+    .then((data) => {
+        questionData = data;
+        console.log(data)
+        $xresult.html = "",
+        render()
+    })
+    
+}
 loadQuestion()
 
 function render() {
-    $result.text(questionData.results[0].question)
+    $xresult.text(questionData.results[0].question)
     
 
 }
-
-// event listeners
-function eventListeners(){
-    $checkBtn.addEventListener('click', checkAnswer);
-    $playAgainBtn.addEventListener('click', restartQuiz);
-}
-
-
-
