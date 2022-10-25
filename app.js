@@ -17,9 +17,9 @@ let correctAnswer = "", correctScore = askedCount = 0, totalQuestion = 10;
 // load question from API
 function loadQuestion(){
     const URL = "https://opentdb.com/api.php?amount=1";
-    $.ajax(URL)
+     $.ajax(URL)
     .then((data) => {
-        questionData = data;
+        questionData = $xresult.data;
         console.log(data)
         $xresult.html = "",
         render()
