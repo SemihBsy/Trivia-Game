@@ -1,22 +1,4 @@
 
-//let questionData;
-
-// const _question = document.getElementById('question');
-// const _options = document.querySelector('.quiz-options');
-// const _checkBtn = document.getElementById('check-answer');
-// const _playAgainBtn = document.getElementById('play-again');
-// const _result = document.getElementById('result');
-// const _correctScore = document.getElementById('correct-score');
-// const _totalQuestion = document.getElementById('total-question');
-
-// const $xquestion = $('#question');
-// const $xoptions = $('.quiz-options');
-// const $xcheckBtn = $('#check-answer');
-// const $xplayAgainBtn = $('#play-again');
-// const $xresult = $('#result');
-// const $xcorrectScore = $('#correct-score');
-// const $xtotalQuestion = $('#total-question');
-
 const $xForce = {
     xquestion: $('#question'),
     xoptions: $('.quiz-options'),
@@ -27,18 +9,20 @@ const $xForce = {
     xtotalQuestion: $('#total-question')
 }
 
+// variables
 let correctAnswer = "";
 let askedCount = 0;
-let correctScore = askedCount;
-let totalQuestion = 18
+let correctScore = 0;
+let totalQuestion = 18;
+let incorrectScore = 0;
 
+
+// event listener
 $(document).ready(function() {
     loadQuestion();
     $xForce.xtotalQuestion.text(totalQuestion);
-    $xForce.xcorrectScore.text(correctScore);
+    $xForce.xcorrectScore.text(askedCount + 1);
 });
-
-
 
 
 // load question from API
@@ -59,19 +43,80 @@ function showQuestion(data){
     let correctAnswer = data.correct_answer;
     let incorrectAnswer = data.incorrect_answers;
     let optionsList = incorrectAnswer;
-    optionsList.splice(Math.floor(Math.random() * (incorrectAnswer.length + 1)), 0, correctAnswer); // inserting correct answer in random position in the options list
+    //console.log(data)
+    // inserting correct answer in random position in the options list
+    optionsList.splice(Math.floor(Math.random() * (incorrectAnswer.length + 1)), 0, correctAnswer); 
     
-    $xForce.xquestion.append(`${data.question} <br> <span class ="category">${data.category} </span>`);
-    $xForce.xoptions.append(`${optionsList.map((option, index) => `
-    <li> ${index + 1}. <span> ${option} </span> </li>`).join('')}`);
+    $xForce.xquestion.html(`${data.question} <br> <span class ="category">${data.category} </span>`);
+    $xForce.xoptions.html(`${optionsList.map((option, index) => `
+    <li data-answer = "${correctAnswer}"> ${index + 1}.  ${option} </li>`).join('')}`);
     selectOption();
 }
 
 // options selection
 function selectOption(){
-    $('$xForce.xoptions li').each((option) => {
-        option.click(() => {
-            console.log("hello");
+    $('.quiz-options').each(()=>{
+        $('li').on("click", (e) =>{
+            const clickedOption = e.target;
+            const correctAnswer = clickedOption.dataset.answer
+            let option = e.target.innerText.split(" ").slice(1, e.target.innerText.split(" ").length).join(' ')
+            if(correctAnswer === option){
+                correctScore++;
+                console.log("correct");
+                $xForce.xcorrectScore.text(`${++askedCount}`);
+                $xForce.xcheckBtn.html(`<p><i class = "fas fa-check"></i>Correct Answer!</p>`)
+            }else{
+                $xForce.xcorrectScore.text(`${++askedCount}`);
+                
+                ++incorrectScore;
+                $xForce.xcheckBtn.html(`<p><i class = "fas fa-times"></i>Incorrect Answer!</p> <small><b>Correct Answer: </b>${correctAnswer}</small>`)
+            }
+            $('li').off('click')
+            checkCount(correctScore);
+            
         });
-    });
+    })           
 }
+
+
+function checkCount(correctScore){
+    //askedCount++;
+    console.log(correctScore, incorrectScore);
+    //setCount();
+    if(askedCount == totalQuestion){
+        setTimeout(() => {
+            console.log("");
+        }, 5000);
+        restartQuiz()
+        $xForce.xresult.html(`<p>Your score is ${correctScore}.</p>`);
+    } else {
+        setCount();
+        setTimeout(() => {
+            loadQuestion();
+        }, 300);
+    }
+}
+
+function setCount(){
+    $xForce.xtotalQuestion.text(`${totalQuestion}`);
+    $xForce.xcorrectScore.text(`${askedCount + 1}`);
+}
+
+function restartQuiz(){
+    correctScore = 0;
+    incorrectScore = 0;
+    askedCount = 0;
+    
+    setTimeout(() => {
+        $xForce.xresult.html("");
+        $xForce.xcheckBtn.html("CHECK ANSWER");
+        setCount();
+    loadQuestion();
+    }, 5000)
+}    
+
+
+
+
+
+
