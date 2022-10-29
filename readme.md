@@ -11,13 +11,20 @@ An online trivia game that grabs the questions from api, gives you multiple choi
 - APIs
 `Open Trivia DB`
 
-### DESKTOP
+### DESKTOP DRAFT
 
-![Desktop Version](https://i.imgur.com/TKPvrtw.png)
+![Desktop Version Template](https://i.imgur.com/TKPvrtw.png)
 
-### MOBILE
+### DESKTOP FINAL
 
-![Mobile Version](https://i.imgur.com/sF4Bvup.png)
+![Desktop Version Final](https://i.imgur.com/Gj00jIA.png)
+
+### MOBILE DRAFT
+
+![Mobile Version Template](https://i.imgur.com/sF4Bvup.png)
+
+### MOBILE FINAL
+![Mobile Version Final](https://i.imgur.com/96UfkSt.png)
 
 
 
@@ -43,4 +50,4 @@ An online trivia game that grabs the questions from api, gives you multiple choi
 | 7 | Finishing touches |
 
 ### Link to Project
-[My Project Live Page]
+[Live Page](https://semihbsy.github.io/project1/)
