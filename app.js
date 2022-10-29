@@ -1,4 +1,4 @@
-
+// DOM manipulation
 const $xForce = {
     xquestion: $('#question'),
     xoptions: $('.quiz-options'),
@@ -43,11 +43,12 @@ function showQuestion(data){
     let correctAnswer = data.correct_answer;
     let incorrectAnswer = data.incorrect_answers;
     let optionsList = incorrectAnswer;
-    //console.log(data)
+    
     // inserting correct answer in random position in the options list
     optionsList.splice(Math.floor(Math.random() * (incorrectAnswer.length + 1)), 0, correctAnswer); 
-    
+    // inserting category
     $xForce.xquestion.html(`${data.question} <br> <span class ="category">${data.category} </span>`);
+    // inserting answers/options to the li element
     $xForce.xoptions.html(`${optionsList.map((option, index) => `
     <li data-answer = "${correctAnswer}"> ${index + 1}.  ${option} </li>`).join('')}`);
     selectOption();
@@ -62,12 +63,10 @@ function selectOption(){
             let option = e.target.innerText.split(" ").slice(1, e.target.innerText.split(" ").length).join(' ')
             if(correctAnswer === option){
                 correctScore++;
-                console.log("correct");
                 $xForce.xcorrectScore.text(`${++askedCount}`);
                 $xForce.xcheckBtn.html(`<p><i class = "fas fa-check"></i>Correct Answer!</p>`)
             }else{
                 $xForce.xcorrectScore.text(`${++askedCount}`);
-                
                 ++incorrectScore;
                 $xForce.xcheckBtn.html(`<p><i class = "fas fa-times"></i>Incorrect Answer!</p> <small><b>Correct Answer: </b>${correctAnswer}</small>`)
             }
@@ -78,11 +77,8 @@ function selectOption(){
     })           
 }
 
-
+// counting scores & restarting the game 
 function checkCount(correctScore){
-    //askedCount++;
-    console.log(correctScore, incorrectScore);
-    //setCount();
     if(askedCount == totalQuestion){
         setTimeout(() => {
             console.log("");
@@ -97,11 +93,13 @@ function checkCount(correctScore){
     }
 }
 
+// showing question numbers
 function setCount(){
     $xForce.xtotalQuestion.text(`${totalQuestion}`);
     $xForce.xcorrectScore.text(`${askedCount + 1}`);
 }
 
+// restart function
 function restartQuiz(){
     correctScore = 0;
     incorrectScore = 0;
