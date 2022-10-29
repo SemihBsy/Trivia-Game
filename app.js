@@ -2,7 +2,6 @@
 const $xForce = {
     xquestion: $('#question'),
     xoptions: $('.quiz-options'),
-    xcheckBtn: $('#check-answer'),
     xplayAgainBtn: $('#play-again'),
     xresult: $('#result'),
     xcorrectScore: $('#correct-score'),
@@ -64,11 +63,11 @@ function selectOption(){
             if(correctAnswer === option){
                 correctScore++;
                 $xForce.xcorrectScore.text(`${++askedCount}`);
-                $xForce.xcheckBtn.html(`<p><i class = "fas fa-check"></i>Correct Answer!</p>`)
+                $xForce.xresult.html(`<p><i class = "fas fa-check"></i>Correct Answer!</p>`)
             }else{
                 $xForce.xcorrectScore.text(`${++askedCount}`);
                 ++incorrectScore;
-                $xForce.xcheckBtn.html(`<p><i class = "fas fa-times"></i>Incorrect Answer!</p> <small><b>Correct Answer: </b>${correctAnswer}</small>`)
+                $xForce.xresult.html(`<p><i class = "fas fa-times"></i>Incorrect Answer!</p> <small><b>Correct Answer: </b>${correctAnswer}</small>`)
             }
             $('li').off('click')
             checkCount(correctScore);
@@ -107,7 +106,7 @@ function restartQuiz(){
     
     setTimeout(() => {
         $xForce.xresult.html("");
-        $xForce.xcheckBtn.html("CHECK ANSWER");
+        //$xForce.xcheckBtn.html("CHECK ANSWER");
         setCount();
     loadQuestion();
     }, 5000)
