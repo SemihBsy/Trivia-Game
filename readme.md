@@ -50,4 +50,4 @@ An online trivia game that grabs the questions from api, gives you multiple choi
 | 7 | Finishing touches |
 
 ### Link to Project
-[Live Page](https://semihbsy.github.io/project1/)
+[Live Page](https://semihbsy.github.io/Trivia-Game/)
